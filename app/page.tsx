@@ -11,7 +11,7 @@ import Alert from '@mui/material/Alert';
 import JSZip from 'jszip';
 
 const EsmApp = () => {
-  const [sequence, setSequence] = useState("KVFGRCELAAAMKRHGLDNYRGYSLGNWVCAAKFESNFNTQATNRNTDGSTDYGILQINSRWWCNDGRTPGSRNLCNIPCSALLSSDITASVNCAKKIVSDGNGMNAWVAWRNRCKGTDVQAWIRGCRL");
+  const [sequence, setSequence] = useState("MKVFGRCELAAAMKRHGLDNYRGYSLGNWVCAAKFESTDYGILQINSRWWCNDGRTPGSRNLCNIPCSALLSSDITASVNCAKKIVSDGNGMNAWVAWRNRCKGTDVQAWIRGCRL");
   const [pdbData, setPdbData] = useState(null);
   const [downloadLink, setDownloadLink] = useState<string | null>(null);
   const viewerRef = useRef(null);
