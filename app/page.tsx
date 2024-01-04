@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import JSZip from 'jszip';
 
 const EsmApp = () => {
@@ -14,6 +16,9 @@ const EsmApp = () => {
   const [downloadLink, setDownloadLink] = useState<string | null>(null);
   const viewerRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [predictedCount, setPredictedCount] = useState(0);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [total_sequences, setTotalSequences] = useState(0);
   
 
   const VisuallyHiddenInput = styled('input')({
@@ -85,13 +90,15 @@ const EsmApp = () => {
 
   const generateZipFile = async (sequences: string[], names: string[]) => {
     const zip = new JSZip();
-
+    setTotalSequences(sequences.length);
     for (let i = 0; i < sequences.length; i++) {
       try {
         const response = await axios.post('https://api.esmatlas.com/foldSequence/v1/pdb/', sequences[i]);
         const pdbString = response.data;
         zip.file(`${names[i]}.pdb`, pdbString);
         console.log(`Predicted protein structure for sequence ${names[i]}`);
+        setPredictedCount(prevCount => prevCount + 1); // increment the count
+        setSnackbarOpen(true); // open the snackbar
       } catch (error) {
         console.error(`Error predicting protein structure for sequence ${names[i]}:`, error);
       }
@@ -164,6 +171,14 @@ const EsmApp = () => {
               <VisuallyHiddenInput type="file" onChange={handleFileUpload} />
             </LoadingButton>
           </div>
+          <div>
+            <Snackbar open={snackbarOpen} autoHideDuration={10000} onClose={() => setSnackbarOpen(false)}>
+              <Alert onClose={() => setSnackbarOpen(false)} severity="success" sx={{ width: '100%' }}>
+                {predictedCount} sequences of {total_sequences} have been predicted!
+              </Alert>
+            </Snackbar>
+          </div>
+
         </div>
         <div className="col-9">
           <div ref={viewerRef} style={{ height: '500px', position: 'relative' }}></div>
