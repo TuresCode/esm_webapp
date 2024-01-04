@@ -179,6 +179,10 @@ const EsmApp = () => {
             </Snackbar>
           </div>
 
+          <div style={{ position: 'absolute', right: '10px', bottom: '10px' }}>
+            © {new Date().getFullYear()} by TuresCode
+          </div>
+
         </div>
         <div className="col-9">
           <div ref={viewerRef} style={{ height: '500px', position: 'relative' }}></div>
