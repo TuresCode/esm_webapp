@@ -172,7 +172,7 @@ const EsmApp = () => {
             </LoadingButton>
           </div>
           <div>
-            <Snackbar open={snackbarOpen} autoHideDuration={10000} onClose={() => setSnackbarOpen(false)}>
+            <Snackbar open={snackbarOpen} autoHideDuration={20000} onClose={() => setSnackbarOpen(false)}>
               <Alert onClose={() => setSnackbarOpen(false)} severity="success" sx={{ width: '100%' }}>
                 {predictedCount} sequences of {total_sequences} have been predicted!
               </Alert>
