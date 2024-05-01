@@ -24,7 +24,3 @@ The application can be accessed at: [https://esm-webapp.vercel.app/](https://esm
 - Material-UI
 - axios
 - JSZip
-
-## 📄 License
-
-© [Current Year] by TuresCode. All rights reserved.
