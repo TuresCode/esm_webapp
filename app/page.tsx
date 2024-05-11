@@ -119,7 +119,7 @@ const EsmApp = () => {
           `Error predicting protein structure for sequence ${names[i]}:`,
           error
         );
-        if (sequence[i].length > 400) {
+        if (sequences[i].length > 400) {
           setTooLong(names[i]);
           setOpen(true);
           return;
