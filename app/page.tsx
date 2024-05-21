@@ -198,9 +198,11 @@ const EsmApp = () => {
               variant="contained"
               loading={loading}
               color="primary"
-              onClick={update}
-            >
-              Submit
+              onClick={() => {
+                console.log("Submit button clicked"); // Debugging log
+                update();
+              }}
+              style={{ zIndex: 10 }} 
             </LoadingButton>
 
             {downloadLink && (
